@@ -16,16 +16,13 @@ public class LorenceActivity extends AppCompatActivity implements SwipeRefreshLa
         setContentView(R.layout.activity_main);
 
         swipeLayout = findViewById(R.id.swipe_container);
+        swipeLayout.setEnabled(true);
         swipeLayout.setOnRefreshListener(this);
-        swipeLayout.setColorScheme(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
     }
 
     @Override
     public void onRefresh() {
+        swipeLayout.setEnabled(false);
         Toast.makeText(LorenceActivity.this, "Hello World", Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -35,4 +32,9 @@ public class LorenceActivity extends AppCompatActivity implements SwipeRefreshLa
             }
         }, 1000);
     }
+
+    /**
+     * If you want to enable and disable => Using method is not efficient in this case.
+     * Let move to another situation: Remove view contain it and add view again.
+     */
 }
